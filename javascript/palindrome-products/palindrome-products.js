@@ -14,13 +14,13 @@ export class Palindromes {
       throw new Error('min must be <= max');
     }
 
-    for (let i = obj.minFactor; i <= obj.maxFactor; i++) {
-      for (let j = i; j <= obj.maxFactor; j++) {
+    for (let i = obj.maxFactor; i >= obj.minFactor; i--) {
+      for (let j = i; j >= obj.minFactor; j--) {
         let prod = j * i;
         if (obj.minFactor === 1) palindromes.unshift(1);
         if (reverseNumber(prod) === prod) {
           let temp = palindromes[k - 1];
-          palindromes.unshift(prod);
+          palindromes.push(prod);
           if (temp > prod) {
             i = j;
           }
@@ -34,6 +34,7 @@ export class Palindromes {
 
     for (let i = obj.minFactor; i < obj.maxFactor; i++) {
       let res = palindromes[0] / i;
+
       if (
         palindromes[0] % i === 0 &&
         res >= obj.minFactor &&
@@ -69,6 +70,7 @@ export class Palindromes {
         factors: largestFactors,
       },
     };
+
     return returnObj;
   }
 }
